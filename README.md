@@ -1,189 +1,193 @@
-Controle Acadêmico — Sistema Completo com Spring Boot + Thymeleaf + MySQL
+<h1 align="center">📘 Sistema de Controle Acadêmico</h1>
 
-📘 Projeto Acadêmico Desenvolvido por Lorran Rodrigues Bezerra
-Sistema completo para gerenciamento de Alunos, Disciplinas e Matrículas, incluindo autenticação e controle de acesso via Spring Security.
+<p align="center">
+  <img src="https://img.shields.io/static/v1?label=Spring%20Boot&message=4.0&color=6DB33F&style=for-the-badge&logo=springboot"/>
+  <img src="https://img.shields.io/static/v1?label=Java&message=17&color=ED8B00&style=for-the-badge&logo=openjdk"/>
+  <img src="https://img.shields.io/static/v1?label=MySQL&message=8.0&color=blue&style=for-the-badge&logo=mysql"/>
+  <img src="https://img.shields.io/static/v1?label=Thymeleaf&message=Template&color=005F0F&style=for-the-badge&logo=thymeleaf"/>
+  <img src="https://img.shields.io/static/v1?label=STATUS&message=CONCLUÍDO&color=GREEN&style=for-the-badge"/>
+</p>
 
-🚀 Tecnologias Utilizadas
+> Status do Projeto: ✔️ **Concluído**
 
-As principais tecnologias aplicadas neste projeto:
+---
 
-Categoria	Tecnologias
-Backend	Spring Boot 4, Spring Web, Spring Data JPA, Spring Security
-Frontend	Thymeleaf, HTML5, CSS3
-Banco de Dados	MySQL 8 + Hibernate ORM
-Segurança	BCrypt, Roles (ADMIN e SECRETARIA)
-Build	Maven
-Controle de Versão	Git + GitHub
-🔐 Regras de Segurança Implementadas
+## 📌 Tópicos
 
-O projeto utiliza Spring Security com:
+:small_blue_diamond: [Descrição do projeto](#descrição-do-projeto)  
+:small_blue_diamond: [Funcionalidades](#funcionalidades)   
+:small_blue_diamond: [Pré-requisitos](#pré-requisitos)  
+:small_blue_diamond: [Como rodar a aplicação](#como-rodar-a-aplicação-arrow_forward)  
+:small_blue_diamond: [Casos de Uso](#casos-de-uso)  
+:small_blue_diamond: [Tecnologias usadas](#linguagens-dependencias-e-libs-utilizadas-books)  
+:small_blue_diamond: [Desenvolvedor](#desenvolvedorescontribuintes-octocat)  
+:small_blue_diamond: [Licença](#licença)
 
-✔ Autenticação
+---
 
-Página de login personalizada (/login)
+## 📘 Descrição do projeto
 
-Criptografia BCrypt para todas as senhas
+<p align="justify">
+O Sistema de Controle Acadêmico é uma aplicação completa desenvolvida em <b>Spring Boot</b>, com autenticação, controle de acesso e gerenciamento de Alunos, Disciplinas e Matrículas. O objetivo é entregar um sistema funcional, seguro e organizado, totalmente integrado ao MySQL.
+<br><br>
+O sistema possui controle de acesso com Spring Security, duas permissões (ADMIN e SECRETARIA), criptografia BCrypt, páginas protegidas e interface construída em HTML + CSS com Thymeleaf.
+</p>
 
-Usuários armazenados no banco
+---
 
-✔ Autorizações (Roles)
-Função	Permissões
-ADMIN	Acesso total ao sistema (CRUD completo)
-SECRETARIA	Pode gerenciar Alunos e Matrículas, mas não pode criar/excluir Disciplinas
-Público (não logado)	Apenas visualiza listagem de disciplinas (home)
-✔ Proteção de rotas
+## ⚙ Funcionalidades
 
-/login → público
+### 👨‍🎓 **Alunos**
+✔ Listar alunos  
+✔ Criar aluno  
+✔ Editar aluno  
+✔ Excluir aluno (somente se não tiver matrícula vinculada)
 
-/ (home) → público
+### 📚 **Disciplinas**
+✔ Listar disciplinas  
+✔ Criar disciplina (ADMIN)  
+✔ Editar  
+✔ Excluir (ADMIN)  
+✔ Disciplinas visíveis ao público sem login
 
-/alunos/**, /disciplinas/**, /matriculas/** → restrito a ADMIN/SECRETARIA
+### 📝 **Matrículas**
+✔ Listar matrículas (aluno + disciplina + situação + nota)  
+✔ Criar matrícula  
+✔ Editar  
+✔ Excluir  
 
-/admin/** → exclusivo ADMIN
+### 🔐 **Segurança**
+✔ Login customizado  
+✔ Senhas criptografadas (BCrypt)  
+✔ Controle de acesso por perfil  
+✔ Home pública com listagem de disciplinas  
+✔ Botão de Login/Logout  
+✔ Menus exibidos dinamicamente conforme permissão  
 
-🧩 Funcionalidades do Sistema
-👨‍🎓 Alunos
+---
 
-Listar todos os alunos
+## ⚠ Pré-requisitos
 
-Criar novo aluno
+Você precisa ter instalado:
 
-Editar aluno existente
+- Java 17  
+- Maven  
+- MySQL 8+  
+- Git  
+- IDE (IntelliJ ou VSCode)
 
-Excluir aluno (somente se não possuir matrículas)
+---
 
-📚 Disciplinas
+## ▶ Como rodar a aplicação :arrow_forward:
 
-Listar disciplinas
+### 1️⃣ Clone o repositório:
+git clone https://github.com/LorranBezerra/controle-academico--TWJ.githttps://github.com/LorranBezerra/controle-academico--TWJ.git
 
-Criar disciplina (ADMIN)
 
-Editar disciplina
-
-Excluir disciplina (ADMIN)
-
-📝 Matrículas
-
-Listar matrículas com:
-
-Aluno
-
-Disciplina
-
-Situação
-
-Nota
-
-Criar matrícula
-
-Editar matrícula
-
-Excluir matrícula
-
-🏠 Home Pública
-
-A página inicial exibe:
-
-✔ Listagem de todas as disciplinas (sem ações)
-✔ Botão para fazer login
-✔ Links de navegação básicos
-
-Após o login, aparecem:
-
-✔ Botões de gerenciamento (Aluno / Disciplina / Matrícula)
-✔ Botão de Logout
-
-🛠️ Como Rodar o Projeto
-1. Clone o repositório
-git clone https://github.com/SEU-USUARIO/controle-academico.git
-
-2. Acesse o projeto
+### 2️⃣ Entre no diretório:
 cd controle-academico
 
-3. Configure o banco MySQL
 
-Crie o banco:
-
+### 3️⃣ Crie o banco no MySQL:
 CREATE DATABASE controle_academico;
 
 
-No arquivo application.properties, configure:
 
+### 4️⃣ Configure o arquivo `application.properties`:
 spring.datasource.url=jdbc:mysql://localhost:3306/controle_academico
 spring.datasource.username=SEU_USUARIO
 spring.datasource.password=SUA_SENHA
-
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 
-4. Rode o projeto
 
-No IntelliJ ou via terminal:
 
+### 5️⃣ Rode o projeto:
 mvn spring-boot:run
 
 
-O sistema abrirá em:
 
-http://localhost:8080
-
-🔑 Usuários de Exemplo
-ADMIN
-Usuário: admin
-Senha: admin123
-
-SECRETARIA
-Usuário: secretaria
-Senha: sec123
+### 6️⃣ Acesse no navegador:
+http://localhost:8080/
 
 
-(As senhas são armazenadas em BCrypt.)
 
-🗂️ Estrutura do Projeto
-src/main/java/br.ifce.controle_academico
-│
-├── controller
-│   ├── AlunoController.java
-│   ├── DisciplinaController.java
-│   ├── MatriculaController.java
-│   └── LoginController.java
-│
-├── security
-│   └── SecurityConfig.java
-│
-├── model
-│   ├── Aluno.java
-│   ├── Disciplina.java
-│   ├── Matricula.java
-│   └── Usuario.java
-│
-└── repository
-    ├── AlunoRepository.java
-    ├── DisciplinaRepository.java
-    ├── MatriculaRepository.java
-    └── UsuarioRepository.java
+---
 
-🎯 Objetivo do Projeto
+## 🔑 Casos de Uso
 
-Este sistema foi desenvolvido como trabalho acadêmico com os seguintes propósitos:
+### 🔒 Login
+Credenciais de teste:
 
-Aplicar conhecimentos de engenharia de software, segurança, arquitetura MVC e persistência de dados
+**ADMIN**
+usuario: admin
+senha: admin123
 
-Demonstrar domínio em Spring Boot com segurança e CRUD completo
 
-Criar uma aplicação funcional pronta para uso ou extensão
+**SECRETARIA**
+usuario: secretaria
+senha: sec123
 
-📸 Screenshots
 
-(Se quiser, me envie imagens que eu coloco aqui bonito com layout GitHub.)
 
-❤️ Contribuição
 
-Quer sugerir melhorias? Fique à vontade para abrir um Pull Request!
+### 🧾 Fluxo de uso
+- Usuário acessa home → vê disciplinas  
+- Faz login → vê botões de gerenciamento  
+- ADMIN pode tudo  
+- SECRETARIA não pode criar/excluir disciplinas  
+- Matrículas só aparecem após login  
 
-📞 Contato
+---
 
-✉ Email: lorranrb@gmail.com
+## 📚 Linguagens, dependências e libs utilizadas :books:
 
-💼 LinkedIn: (posso gerar sua bio também, se quiser)
-🚀 GitHub: github.com/seu-usuario
+- Java 17  
+- Spring Boot 4  
+- Thymeleaf  
+- MySQL  
+- Hibernate  
+- Maven  
+- Spring Security (BCrypt, roles, filtros)  
+
+---
+
+## 🛠 Resolvendo Problemas
+
+Durante o desenvolvimento, alguns problemas foram resolvidos, entre eles:
+
+- Erro de cascata ao excluir alunos com matrículas  
+- Redirecionamento incorreto após login  
+- Thymeleaf não exibindo botões conforme role  
+- Configuração de SecurityFilterChain  
+
+*(posso documentar cada um se você quiser)*
+
+---
+
+## 👨‍💻 Desenvolvedores/Contribuintes :octocat:
+
+| <img src="https://media.licdn.com/dms/image/v2/C4D03AQFTn3tdBUVF_w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1661868152655?e=1766620800&v=beta&t=cv-dpZq0cCUiApJyfOi4etlNemPrZkUKlcpV_618nsE" width=115><br><sub><b>Lorran  Bezerra</b></sub> |
+| :---: |
+| <a href="https://github.com/LorranBezerra">GitHub</a> |
+
+---
+
+## 📄 Licença 
+
+Este projeto está licenciado sob a **MIT License**.
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
