@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Disciplinas</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        a.btn-nova {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        a.btn-nova:hover {
+            background: #43a047;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        th {
+            background: #4CAF50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f1f1f1;
+        }
+
+        .acoes a {
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-editar {
+            background: #0277bd;
+            color: white;
+        }
+
+        .btn-editar:hover {
+            background: #015f91;
+        }
+
+        .btn-excluir {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .btn-excluir:hover {
+            background: #b71c1c;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Lista de Disciplinas</h2>
+
+<a th:href="@{/disciplinas/nova}" class="btn-nova">Cadastrar nova disciplina</a>
+<a th:href="@{/}" class="btn-nova">⬅ Voltar para Home</a>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Carga Horária</th>
+        <th>Semestre</th>
+        <th>Ações</th>
+    </tr>
+
+    <tr th:each="d : ${disciplinas}">
+        <td th:text="${d.id}"></td>
+        <td th:text="${d.codigo}"></td>
+        <td th:text="${d.nome}"></td>
+        <td th:text="${d.cargaHoraria}"></td>
+        <td th:text="${d.semestre}"></td>
+        <td class="acoes">
+            <a th:href="@{|/disciplinas/editar/${d.id}|}" class="btn-editar">Editar</a>
+            <a th:href="@{|/disciplinas/excluir/${d.id}|}"
+               class="btn-excluir"
+               onclick="return confirm('Deseja excluir a disciplina?')">Excluir</a>
+        </td>
+    </tr>
+</table>
+
+
+</body>
+</html>

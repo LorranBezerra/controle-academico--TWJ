@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrícula</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        form {
+            max-width: 450px;
+            margin: 0 auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: .2s;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #43a047;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+
+        a:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Nova Matrícula</h2>
+
+<form th:action="@{/matriculas/salvar}" th:object="${matricula}" method="post">
+
+    <label>Aluno:</label>
+    <select th:field="*{aluno}">
+        <option th:each="a : ${alunos}" th:value="${a.id}" th:text="${a.nome}"></option>
+    </select>
+
+    <label>Disciplina:</label>
+    <select th:field="*{disciplina}">
+        <option th:each="d : ${disciplinas}" th:value="${d.id}" th:text="${d.nome}"></option>
+    </select>
+
+    <label>Situação:</label>
+    <select th:field="*{situacao}">
+        <option th:each="s : ${situacaoValues}" th:value="${s}" th:text="${s}"></option>
+    </select>
+
+    <label>Nota Final (opcional):</label>
+    <input type="number" step="0.01" th:field="*{notaFinal}">
+
+    <button type="submit">Salvar</button>
+    <a th:href="@{/matriculas}">Cancelar</a>
+
+</form>
+
+
+</body>
+</html>

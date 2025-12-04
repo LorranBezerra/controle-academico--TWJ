@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://portal.ifce.edu.br/media/images/campus_LwQLV4f.width-800.jpg");
+}
+h1 {
+    padding: 80px;
+    text-align: center;
+    color: white;
+
+
+
+
+
+
+
+    
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.verde {
+    background-color: #285020;
+    border-radius: 10%;
+}
+
+.verde2 {
+    background-color: #507336;
+    border-radius: 10%;
+}
+
+.amarelo {
+    background-color: #bab942;
+    border-radius: 10%;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100px;
+    width: 250px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+ul li a {
+    font-size: 1em;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+}
+
+ul .card p.second-text {
+    font-size: .7em;
+}
+
+ul li:hover {
+    transform: scale(1.1, 1.1);
+}
+
+ul:hover > li:not(:hover) {
+    filter: blur(10px);
+    transform: scale(0.9, 0.9);
+}
+
+
+

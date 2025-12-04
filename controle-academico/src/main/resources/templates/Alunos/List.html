@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Alunos</title>
+
+    <style>
+        /* --- Layout geral (mesmo padrão das páginas anteriores) --- */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 36px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: left;
+            color: #333;
+            margin-bottom: 18px;
+            font-size: 22px;
+        }
+
+        /* --- Card da tabela --- */
+        .table-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            overflow: auto;
+        }
+
+        /* --- Botão "Cadastrar" --- */
+        .btn-nova {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 14px;
+            transition: background .15s;
+        }
+
+        .btn-nova:hover { background: #43a047; }
+
+        /* --- Tabela --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 720px; /* facilita responsividade com overflow */
+        }
+
+        thead th {
+            background: #2f855a; /* tom verde compatível */
+            color: white;
+            text-align: left;
+            padding: 12px;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        tbody td {
+            padding: 12px;
+            border-bottom: 1px solid #eef0f3;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #333;
+        }
+
+        tbody tr:hover {
+            background: #fbfdff;
+        }
+
+        /* --- Ações --- */
+        .acoes {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-editar {
+            background: #0288d1;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background .12s;
+        }
+
+        .btn-editar:hover { background: #0172ad; }
+
+        .btn-excluir {
+            background: #d32f2f;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background .12s;
+        }
+
+        .btn-excluir:hover { background: #b71c1c; }
+
+        /* --- Badge de status --- */
+        .badge {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            background: #6b7280; /* cinza neutro */
+        }
+
+        /* exemplo: status ativo/inativo */
+        .badge-ativo { background: #2b6cb0; } /* azul */
+        .badge-inativo { background: #6b7280; } /* cinza */
+
+        /* --- Mensagem quando vazio --- */
+        .empty {
+            text-align: center;
+            padding: 18px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        /* --- Responsividade simples --- */
+        @media (max-width: 780px) {
+            thead th:nth-child(1), /* ID */
+            td:nth-child(1) { display: none; }
+            thead th:nth-child(4), /* Email */
+            td:nth-child(4) { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2> Lista de Alunos</h2>
+
+    <a th:href="@{/alunos/novo}" class="btn-nova"> Cadastrar novo aluno</a>
+    <a th:href="@{/}" class="btn-nova">⬅ Voltar para Home</a>
+    <div class="table-card">
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th style="width:160px; text-align:center;">Ações</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!-- Caso não tenha alunos -->
+            <tr th:if="${alunos == null or #lists.isEmpty(alunos)}">
+                <td colspan="6" class="empty">Nenhum aluno cadastrado.</td>
+            </tr>
+
+            <!-- Lista de alunos -->
+            <tr th:each="a : ${alunos}">
+                <td th:text="${a.id}"></td>
+                <td th:text="${a.nome}"></td>
+                <td th:text="${a.matricula}"></td>
+                <td th:text="${a.email}"></td>
+
+                <td>
+                        <span th:classappend="${a.status == 'ATIVO'} ? 'badge badge-ativo' : 'badge badge-inativo'"
+                              th:text="${a.status}">Status</span>
+                </td>
+
+                <td class="acoes">
+                    <a th:href="@{|/alunos/editar/${a.id}|}" class="btn-editar"> Editar</a>
+                    <a th:href="@{|/alunos/excluir/${a.id}|}" class="btn-excluir"
+                       onclick="return confirm('Deseja excluir o aluno?')"> Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

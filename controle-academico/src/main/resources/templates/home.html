@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal Acadêmico</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <h1 style="color: #2B2B2F; width: auto; height: auto; background-color: #fbfdff; border-bottom-left-radius: 25%; border-bottom-right-radius: 25%  ">Portal Acadêmico</h1>
+
+
+
+
+
+
+<div sec:authorize="isAnonymous()">
+    <a th:href="@{/login.html}"
+       style="padding:10px 15px; background:#4CAF50; color:white;
+              text-decoration:none; border-radius:5px;">
+         Login
+    </a>
+</div>
+
+
+<div sec:authorize="isAuthenticated()">
+
+
+
+
+
+
+    <div class="ul">
+        <ul>
+        <div class="verde">
+            <li><a th:href="@{/alunos}">Gerenciar Alunos</a></li>
+        </div>
+        <div class="verde2">
+            <li><a th:href="@{/disciplinas}">Gerenciar Disciplinas</a></li>
+        </div>
+        <div class="amarelo">
+            <li><a th:href="@{/matriculas}">Gerenciar Matrículas</a></li>
+        </div>
+        </ul>
+    </div>
+
+
+
+
+
+    <form th:action="@{/logout}" method="post" style="display:inline;">
+        <button type="submit"
+                style="padding:8px 12px; background:#e74c3c; color:white; border:0; border-radius:5px;">
+            Sair
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
+
