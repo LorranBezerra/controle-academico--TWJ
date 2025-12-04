@@ -1,167 +1,145 @@
-<div style="
-    font-family: Arial, sans-serif;
-    padding: 30px;
-    line-height: 1.6;
-">
+Controle Acadêmico — Sistema Completo com Spring Boot + Thymeleaf + MySQL
 
-    <h1 style="
-        font-size: 34px;
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 10px;
-    ">
-        📘 Sistema de Controle Acadêmico
-    </h1>
+📘 Projeto Acadêmico Desenvolvido por Lorran Rodrigues Bezerra
+Sistema completo para gerenciamento de Alunos, Disciplinas e Matrículas, incluindo autenticação e controle de acesso via Spring Security.
 
-    <p style="
-        text-align: center;
-        font-size: 16px;
-        color: #555;
-        margin-bottom: 25px;
-    ">
-        Projeto completo desenvolvido com Spring Boot, Thymeleaf e MySQL.<br>
-        Inclui autenticação, controle de acesso, CRUD completo e interface responsiva.
-    </p>
+🚀 Tecnologias Utilizadas
 
-    <hr style="border: none; height: 1px; background: #ddd; margin: 25px 0;">
+As principais tecnologias aplicadas neste projeto:
+
+Categoria	Tecnologias
+Backend	Spring Boot 4, Spring Web, Spring Data JPA, Spring Security
+Frontend	Thymeleaf, HTML5, CSS3
+Banco de Dados	MySQL 8 + Hibernate ORM
+Segurança	BCrypt, Roles (ADMIN e SECRETARIA)
+Build	Maven
+Controle de Versão	Git + GitHub
+🔐 Regras de Segurança Implementadas
+
+O projeto utiliza Spring Security com:
+
+✔ Autenticação
+
+Página de login personalizada (/login)
+
+Criptografia BCrypt para todas as senhas
+
+Usuários armazenados no banco
+
+✔ Autorizações (Roles)
+Função	Permissões
+ADMIN	Acesso total ao sistema (CRUD completo)
+SECRETARIA	Pode gerenciar Alunos e Matrículas, mas não pode criar/excluir Disciplinas
+Público (não logado)	Apenas visualiza listagem de disciplinas (home)
+✔ Proteção de rotas
+
+/login → público
+
+/ (home) → público
+
+/alunos/**, /disciplinas/**, /matriculas/** → restrito a ADMIN/SECRETARIA
+
+/admin/** → exclusivo ADMIN
+
+🧩 Funcionalidades do Sistema
+👨‍🎓 Alunos
+
+Listar todos os alunos
+
+Criar novo aluno
+
+Editar aluno existente
+
+Excluir aluno (somente se não possuir matrículas)
+
+📚 Disciplinas
+
+Listar disciplinas
+
+Criar disciplina (ADMIN)
+
+Editar disciplina
+
+Excluir disciplina (ADMIN)
+
+📝 Matrículas
+
+Listar matrículas com:
+
+Aluno
+
+Disciplina
+
+Situação
+
+Nota
+
+Criar matrícula
+
+Editar matrícula
+
+Excluir matrícula
+
+🏠 Home Pública
+
+A página inicial exibe:
+
+✔ Listagem de todas as disciplinas (sem ações)
+✔ Botão para fazer login
+✔ Links de navegação básicos
+
+Após o login, aparecem:
+
+✔ Botões de gerenciamento (Aluno / Disciplina / Matrícula)
+✔ Botão de Logout
+
+🛠️ Como Rodar o Projeto
+1. Clone o repositório
+git clone https://github.com/SEU-USUARIO/controle-academico.git
+
+2. Acesse o projeto
+cd controle-academico
+
+3. Configure o banco MySQL
+
+Crie o banco:
+
+CREATE DATABASE controle_academico;
 
 
-    <!-- Tecnologias -->
-    <h2 style="color:#2c3e50;">🚀 Tecnologias Utilizadas</h2>
+No arquivo application.properties, configure:
 
-    <ul style="padding-left: 20px;">
-        <li><b>Spring Boot 4</b> (Web, JPA, Security)</li>
-        <li><b>Thymeleaf</b> (templates HTML)</li>
-        <li><b>MySQL 8</b> + Hibernate ORM</li>
-        <li><b>BCrypt</b> para criptografia de senha</li>
-        <li><b>Maven</b> para gerenciamento do projeto</li>
-        <li><b>HTML5 & CSS3</b></li>
-    </ul>
-
-
-    <!-- Segurança -->
-    <h2 style="color:#2c3e50;">🔐 Segurança (Spring Security)</h2>
-
-    <div style="
-        background: #eef6ff;
-        border-left: 4px solid #3498db;
-        padding: 15px;
-        margin: 15px 0;
-    ">
-        <p><b>✔ Login customizado</b></p>
-        <p><b>✔ Senhas com BCrypt</b></p>
-        <p><b>✔ Controle de acesso por perfis</b></p>
-        <p><b>✔ Páginas públicas e privadas</b></p>
-    </div>
-
-    <h3 style="color:#333;">Perfis:</h3>
-    <ul>
-        <li><b>ADMIN:</b> Acesso total (CRUD completo)</li>
-        <li><b>SECRETARIA:</b> Gerencia Alunos e Matrículas</li>
-        <li><b>Público:</b> Acesso somente à listagem de disciplinas</li>
-    </ul>
-
-
-    <!-- Funcionalidades -->
-    <h2 style="color:#2c3e50;">🧩 Funcionalidades do Sistema</h2>
-
-    <h3 style="margin-top: 10px;">👨‍🎓 Alunos</h3>
-    <ul>
-        <li>Listar</li>
-        <li>Adicionar</li>
-        <li>Editar</li>
-        <li>Excluir (somente se não tiver matrícula)</li>
-    </ul>
-
-    <h3>📚 Disciplinas</h3>
-    <ul>
-        <li>Listar</li>
-        <li>Criar disciplina (ADMIN)</li>
-        <li>Editar</li>
-        <li>Excluir (ADMIN)</li>
-    </ul>
-
-    <h3>📝 Matrículas</h3>
-    <ul>
-        <li>Listar com: aluno, disciplina, nota e situação</li>
-        <li>Criar matrícula</li>
-        <li>Editar matrícula</li>
-        <li>Excluir</li>
-    </ul>
-
-
-    <!-- Como rodar -->
-    <h2 style="color:#2c3e50;">⚙️ Como Rodar o Projeto</h2>
-
-    <ol>
-        <li>Clone o repositório:<br>
-            <code>git clone https://github.com/SEU-USUARIO/controle-academico.git</code>
-        </li>
-
-        <li>Acesse o diretório:<br>
-            <code>cd controle-academico</code>
-        </li>
-
-        <li>Crie o banco no MySQL:
-            <pre><code>CREATE DATABASE controle_academico;</code></pre>
-        </li>
-
-        <li>Configure o <b>application.properties</b>:
-            <pre><code>
 spring.datasource.url=jdbc:mysql://localhost:3306/controle_academico
 spring.datasource.username=SEU_USUARIO
 spring.datasource.password=SUA_SENHA
+
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
-            </code></pre>
-        </li>
 
-        <li>Execute:
-            <pre><code>mvn spring-boot:run</code></pre>
-        </li>
+4. Rode o projeto
 
-        <li>Acesse no navegador:
-            <pre><code>http://localhost:8080</code></pre>
-        </li>
-    </ol>
+No IntelliJ ou via terminal:
+
+mvn spring-boot:run
 
 
-    <!-- Usuários -->
-    <h2 style="color:#2c3e50;">🔑 Usuários de Teste</h2>
+O sistema abrirá em:
 
-    <table style="
-        border-collapse: collapse;
-        width: 100%;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-    ">
-        <tr style="background: #3498db; color: white;">
-            <th style="padding: 8px;">Perfil</th>
-            <th style="padding: 8px;">Usuário</th>
-            <th style="padding: 8px;">Senha</th>
-        </tr>
-        <tr>
-            <td style="padding: 8px;">ADMIN</td>
-            <td style="padding: 8px;">admin</td>
-            <td style="padding: 8px;">admin123</td>
-        </tr>
-        <tr>
-            <td style="padding: 8px;">SECRETARIA</td>
-            <td style="padding: 8px;">secretaria</td>
-            <td style="padding: 8px;">sec123</td>
-        </tr>
-    </table>
+http://localhost:8080
+
+🔑 Usuários de Exemplo
+ADMIN
+Usuário: admin
+Senha: admin123
+
+SECRETARIA
+Usuário: secretaria
+Senha: sec123
 
 
-    <!-- Estrutura -->
-    <h2 style="color:#2c3e50;">🗂️ Estrutura do Projeto</h2>
+(As senhas são armazenadas em BCrypt.)
 
-    <pre style="
-        background: #f4f4f4;
-        border-left: 4px solid #3498db;
-        padding: 15px;
-        overflow-x: auto;
-    "><code>
+🗂️ Estrutura do Projeto
 src/main/java/br.ifce.controle_academico
 │
 ├── controller
@@ -184,18 +162,28 @@ src/main/java/br.ifce.controle_academico
     ├── DisciplinaRepository.java
     ├── MatriculaRepository.java
     └── UsuarioRepository.java
-    </code></pre>
 
+🎯 Objetivo do Projeto
 
-    <!-- Contato -->
-    <h2 style="color:#2c3e50;">📞 Contato</h2>
+Este sistema foi desenvolvido como trabalho acadêmico com os seguintes propósitos:
 
-    <p>
-        <b>Autor:</b> Lorran Rodrigues Bezerra <br>
-        <b>Email:</b> rodriguesbromen@gmail.com
-    </p>
+Aplicar conhecimentos de engenharia de software, segurança, arquitetura MVC e persistência de dados
 
-    <hr style="border: none; height: 1px; background: #ddd; margin-top: 20px;">
-    <p style="text-align:center; color:#999;">Projeto desenvolvido para fins acadêmicos.</p>
+Demonstrar domínio em Spring Boot com segurança e CRUD completo
 
-</div>
+Criar uma aplicação funcional pronta para uso ou extensão
+
+📸 Screenshots
+
+(Se quiser, me envie imagens que eu coloco aqui bonito com layout GitHub.)
+
+❤️ Contribuição
+
+Quer sugerir melhorias? Fique à vontade para abrir um Pull Request!
+
+📞 Contato
+
+✉ Email: lorranrb@gmail.com
+
+💼 LinkedIn: (posso gerar sua bio também, se quiser)
+🚀 GitHub: github.com/seu-usuario
