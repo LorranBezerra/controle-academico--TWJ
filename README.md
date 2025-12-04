@@ -173,11 +173,7 @@ Durante o desenvolvimento, alguns problemas foram resolvidos, entre eles:
 
 ---
 
-## 📄 Licença 
 
-Este projeto está licenciado sob a **MIT License**.
-
----
 
 
 
